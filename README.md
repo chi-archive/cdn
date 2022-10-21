@@ -1,0 +1,2 @@
+# cdn
+https://chicdn.cn/
