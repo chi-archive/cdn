@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>What?</title>
+    </head>
+    <body>
+        <video src="" controls id="hivideo"></video>
+        <audio src="" controls id="hiaudio1"></audio>
+        <audio src="" controls id="hiaudio2"></audio>
+        <script>
+            var mes
+            var wsconn=new WebSocket("wss://api.v1.ws.chicdn.cn/getvideo/lvba");
+            var wsconn2=new WebSocket("wss://api.v1.ws.chicdn.cn/getaudio/2");
+            var wsconn3=new WebSocket("wss://api.v1.ws.chicdn.cn/getaudio/1");            
+            wsconn.onmessage=function(event){
+                console.log(typeof event.data);
+                if(typeof event.data == "object"){
+                    mes=event.data;
+                    console.log(event.data);
+                    document.getElementById("hivideo").src=URL.createObjectURL(event.data);
+                }
+            }
+            wsconn.onopen=function(){
+                wsconn.send("hiwdnmdtoken");
+            }
+            wsconn2.onmessage=function(event){
+                console.log(typeof event.data);
+                if(typeof event.data == "object"){
+                    mes=event.data;
+                    console.log(event.data);
+                    document.getElementById("hiaudio1").src=URL.createObjectURL(event.data);
+                }
+            }
+            wsconn2.onopen=function(){
+                wsconn2.send("hiwdnmdtoken");
+            }
+            wsconn3.onmessage=function(event){
+                console.log(typeof event.data);
+                if(typeof event.data == "object"){
+                    mes=event.data;
+                    console.log(event.data);
+                    document.getElementById("hiaudio2").src=URL.createObjectURL(event.data);
+                }
+            }
+            wsconn3.onopen=function(){
+                wsconn3.send("hiwdnmdtoken");
+            }
+        </script>
+    </body>
+</html>

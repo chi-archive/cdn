@@ -1,0 +1,52 @@
+
+
+一：
+
+#BBR+BBR魔改+Lotsever(锐速)一键脚本 for Centos/Debian/Ubuntu
+
+#支持系统：CentOS 6+、Debian 8+、Ubuntu 14+。
+wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
+
+#Ubuntu 18.04魔改BBR暂时有点问题，可使用以下命令安装：
+wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh"
+apt install make gcc -y
+sed -i 's#/usr/bin/gcc-4.9#/usr/bin/gcc#g' '/root/tcp.sh'
+chmod +x tcp.sh && ./tcp.sh
+
+二：
+
+#秋水逸冰 一键安装最新内核并开启 BBR 脚本
+wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+
+
+三：
+
+#萌咖大佬的下改版bbr加速脚本 github仓库：https://github.com/MoeClub/BBR
+#一键安装：
+Debian9, v4.14, install kernel from release.
+bash <(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/MoeClub/BBR/master/install.sh')
+Debian9, v4.14, build kernel from source.
+bash <(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/MoeClub/BBR/master/build.sh')
+
+#手动安装
+#1、安装内核与优化
+bash <(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/MoeClub/BBR/master/install.sh')
+reboot
+
+#2、安装bbr加速模块
+cd /lib/modules/`uname -r`/kernel/net/ipv4
+wget --no-check-certificate -qO 'tcp_bbr.ko' 'https://moeclub.org/attachment/LinuxSoftware/bbr/tcp_bbr.ko'
+
+#3、重启服务器
+reboot
+
+#4、检查bbr加速模块是否已经加载
+root@debian:~# lsmod |grep bbr
+tcp_bbr                20480  50
+
+#卸载
+rm /lib/modules/`uname -r`/kernel/net/ipv4/tcp_bbr.ko
+reboot
+#删除bbr模块并重启服务器
+
+wzfou.com整理于2020年1月5日

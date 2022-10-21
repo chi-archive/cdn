@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      @keyframes roundround {
+        0% {
+          transform: rotate(0deg);
+          color: #000000;
+          /* background-color: #ffffff; */
+        }
+        50% {
+          transform: rotate(180deg);
+          color: #000000;
+          /* background-color: #000000; */
+        }
+        100% {
+          transform: rotate(360deg);
+          color: #000000;
+          /* background-color: #ffffff; */
+        }
+      }
+      #app {
+        display: inline-block;
+        animation-name: roundround;
+        animation-duration: 0.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        padding: 0;
+        margin: 0;
+      }
+      div,body,html{
+        padding: 0;
+        margin: 0;
+      }
+      body div {
+        font-size: 36px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>Powered by chihuo2104.All rights reserved <div id="app"><span>&copy;</span></div>2018-2022.</div>
+  </body>
+</html>
